@@ -1,10 +1,14 @@
+import { Company } from "./company";
+import { Role } from "./role";
+
 export interface User {
-    userName: string;
+    id: number;
+    username: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     phone: string;
-    role: string;
-    company: string;
+    role: Role;
+    company: Company;
 
 }

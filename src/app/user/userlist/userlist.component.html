@@ -6,8 +6,11 @@
                     <section class="panel">
                         <header class="panel-heading text-center">
                             <div class="row">
-                                <div class="col-9">
+                                <div class="col-11">
                                     <h3 class="panel-title">User List</h3>
+                                </div>
+                                <div class="col-1">
+                                    <i class="fa-regular fa-circle-plus"></i>
                                 </div>
                             </div>
 
@@ -38,16 +41,16 @@
                                                             <tbody>
                                                             <tr *ngFor="let user of users; let i = index">
                                                                 <td>{{ i }}</td>
-                                                                <td ng:if="user.company">{{ user.company}}</td>
-                                                                <td >{{user.role}}</td>
-                                                                <td >{{user.firstName}}</td>
-                                                                <td >{{user.lastName}}</td>
-                                                                <td >{{user.userName}}</td>
+                                                                <td ng:if="user.company">{{ user.company.title}}</td>
+                                                                <td >{{user.role.description}}</td>
+                                                                <td >{{user.firstname}}</td>
+                                                                <td >{{user.lastname}}</td>
+                                                                <td >{{user.username}}</td>
                                                                 <td >{{user.phone}}</td>
                                                                 <td class="actions">
                                                                     <a href="#"
                                                                        type="button">
-                                                                        <button class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
+                                                                        <button class="btn btn-primary">
                                                                             Edit
                                                                         </button>
                                                                     </a>
@@ -56,7 +59,7 @@
                                                                           data-toggle="tooltip"
                                                                           title="Can not be deleted! This user is only admin for this company or logged in admin.">
                                                                         <button
-                                                                                class="btn btn-danger mb-2 ml-2 mb-sm-0 mr-sm-2"
+                                                                                class="btn btn-danger"
                                                                                 style="pointer-events: none;"
                                                                                 disabled>Delete
                                                                         </button>
@@ -78,7 +81,7 @@
                             <div class="col-auto">
                                 <form>
                                     <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                                        <a id="userCreateLink" class="btn bg-dark text-light mb-1"
+                                        <a id="userCreateLink" class="btn bg-dark text-light p-1"
                                            href="#"><i class="fa fa-plus mr-1"></i>
                                             Create User</a>
                                     </div>

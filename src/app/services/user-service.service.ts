@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../common/user';
-import { map, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class UserServiceService {
 
   public getUsers(): Observable<User[]> {
     return this.http.get<GetResponseUsers>(this.baseUrl).pipe(
-      map(response => response.data.users)
+      tap(response => console.log(response)),
+      map(response => response.data),
+      tap(user => console.log(user))
     );
   }
   
@@ -22,7 +25,5 @@ export class UserServiceService {
 }
 
 interface GetResponseUsers {
-  data: {
-    users: User[];
-  }
+  data: [];
 }
