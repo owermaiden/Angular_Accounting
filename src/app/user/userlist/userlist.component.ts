@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { User } from 'src/app/common/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-userlist',
@@ -11,6 +11,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class UserlistComponent implements OnInit {
 
   users: User[] = [];
+  faPlus = faCirclePlus;
 
   constructor(private userservice: UserServiceService) { }
 

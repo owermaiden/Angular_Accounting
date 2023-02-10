@@ -15,11 +15,15 @@ export class UserServiceService {
 
   public getUsers(): Observable<User[]> {
     return this.http.get<GetResponseUsers>(this.baseUrl).pipe(
-      tap(response => console.log(response)),
-      map(response => response.data),
-      tap(user => console.log(user))
+      map(response => response.data)
     );
   }
+
+  public createUser(user: User): Observable<User[]> {
+    return this.http.post<GetResponseUsers>(this.baseUrl, user).pipe(
+      map(response => response.data)
+    );
+  } 
   
 
 }

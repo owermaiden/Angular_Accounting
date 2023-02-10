@@ -1,4 +1,4 @@
-export interface Role {
-    id: number;
-    description: string;
+export class Role {
+    constructor(public id: number,
+                public description: string){}
 }

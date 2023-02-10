@@ -1,10 +1,11 @@
 import { Address } from "./address";
 
-export interface Company {
-    id: number;
-    title: string;
-    phone: string;
-    website: string;
-    companyStatus: string;
-    adress: Address;
+export class Company {
+    constructor(public id: number,
+                public title: string,
+                public phone: string,
+                public website: string,
+                public companyStatus: string,
+                public address: Address
+                ){}
 }
