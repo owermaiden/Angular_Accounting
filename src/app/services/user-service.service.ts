@@ -19,15 +19,31 @@ export class UserServiceService {
     );
   }
 
+  public getUserById(id: number | string): Observable<User> {
+    return this.http.get<GetResponseUser>(`${this.baseUrl}/${id}`).pipe(
+      map(response => response.data)
+    );
+  }
+
   public createUser(user: User): Observable<User[]> {
     return this.http.post<GetResponseUsers>(this.baseUrl, user).pipe(
       map(response => response.data)
     );
   } 
+
+  public deleteUser(id: number): any {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`).pipe(
+      map(response => console.log(response))
+    )
+  }
   
 
 }
 
 interface GetResponseUsers {
   data: [];
+}
+
+interface GetResponseUser {
+  data: User;
 }

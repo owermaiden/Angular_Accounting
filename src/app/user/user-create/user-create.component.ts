@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { faList } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { faList, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Company } from 'src/app/common/company';
 import { Role } from 'src/app/common/role';
 import { User } from 'src/app/common/user';
@@ -15,9 +16,10 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class UserCreateComponent implements OnInit {
   faList = faList;
+  user$: User = new User;
   company: Company | undefined;
   roles: Role[] = [];
-
+  
   userForm = this.formBuilder.group({
     firstname: new FormControl('',[Validators.required,Validators.minLength(2)]),
     lastname:  new FormControl('',[Validators.required,Validators.minLength(2)]),
@@ -31,10 +33,20 @@ export class UserCreateComponent implements OnInit {
   constructor(private companyService: CompanyService,
               private roleService: RoleService,
               private userService: UserServiceService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute) { }
   
   ngOnInit(): void {
+    this.route.paramMap.subscribe(() => { this.getUserById(); })
     this.initPage();
+  }
+
+  getUserById() {
+    const id: number = +this.route.snapshot.paramMap.get('id')!;
+    this.userService.getUserById(id).subscribe(
+      (response: User) => this.user$ = response
+    )
   }
 
   initPage(): void {
@@ -49,20 +61,10 @@ export class UserCreateComponent implements OnInit {
   onSubmit():any{
     console.log(this.userForm.value); 
     const user: User = this.userForm.value as User;
-    // let role: Role = this.userForm.value.role as Role!;
-    // let comp: Company = this.userForm.value.company;
-    // new User(
-    //   this.userForm.value.username!,
-    //   this.userForm.value.password!,
-    //   this.userForm.value.firstname!,
-    //   this.userForm.value.lastname!,
-    //   this.userForm.value.phone!,
-    //   role,
-    //   comp
-    // );
     this.userService.createUser(user).subscribe(
       data => console.log(data)
     );
+    this.router.navigate(['/userlist']);
   }
 
   

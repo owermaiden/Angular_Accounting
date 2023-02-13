@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/common/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-userlist',
@@ -9,9 +9,11 @@ import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./userlist.component.css']
 })
 export class UserlistComponent implements OnInit {
-
-  users: User[] = [];
   faPlus = faCirclePlus;
+  faTrashCan = faTrashCan;
+  faPen = faPen;
+  users: User[] = [];
+  
 
   constructor(private userservice: UserServiceService) { }
 
@@ -21,8 +23,14 @@ export class UserlistComponent implements OnInit {
 
   getUsers(): any {
     return this.userservice.getUsers().subscribe(
-      response => this.users = response);
+      response => this.users = response
+      );
+  }
 
+  deleteUser(id: number){
+    this.userservice.deleteUser(id).subscribe(
+      (response: any) => console.log(response)
+    );
   }
 
 }
