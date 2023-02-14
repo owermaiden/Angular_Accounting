@@ -51,7 +51,7 @@
                                                                 <td >{{user.username}}</td>
                                                                 <td >{{user.phone}}</td>
                                                                 <td class="d-flex justify-content-center">
-                                                                    <a routerLink="/user-detail/{{user.id}}" 
+                                                                    <a routerLink="/user-update/{{user.id}}" 
                                                                        routerLinkActive="active" 
                                                                        ariaCurrentWhenActive="page"
                                                                        type="button"
@@ -63,7 +63,7 @@
                                                                     routerLinkActive="active" 
                                                                     ariaCurrentWhenActive="page"
                                                                     type="button"
-                                                                    (click)="deleteUser(user.id!)"
+                                                                    (click)="deleteUser(user)"
                                                                     ><fa-icon [icon]="faTrashCan"  ></fa-icon>
                                                                  </a>
                                                                 </td>

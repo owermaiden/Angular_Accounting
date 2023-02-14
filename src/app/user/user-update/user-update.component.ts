@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { Company } from 'src/app/common/company';
 import { Role } from 'src/app/common/role';
@@ -10,23 +10,25 @@ import { RoleService } from 'src/app/services/role.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
-  selector: 'app-user-create',
-  templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css']
+  selector: 'app-user-update',
+  templateUrl: './user-update.component.html',
+  styleUrls: ['./user-update.component.css']
 })
-export class UserCreateComponent implements OnInit {
+export class UserUpdateComponent implements OnInit {
   faList = faList;
-  user$: User = new User;
+  user$!: User;
   company: Company | undefined;
   roles: Role[] = [];
   userForm!: FormGroup; 
 
   constructor(private companyService: CompanyService,
-              private roleService: RoleService,
-              private userService: UserServiceService,
-              private formBuilder: FormBuilder,
-              private router: Router) { }
-  
+    private roleService: RoleService,
+    private userService: UserServiceService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute) { }
+
+
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
       firstname: new FormControl('',[Validators.required,Validators.minLength(2)]),
@@ -37,7 +39,16 @@ export class UserCreateComponent implements OnInit {
       role: new FormControl('', [Validators.required]),
       company: new FormControl(this.company, [Validators.required])
     });
+
+    const id: number = +this.route.snapshot.paramMap.get('id')!;
+    this.route.paramMap.subscribe(() => { this.getUserById(id); });
     this.initPage();
+  }
+
+  getUserById(id: number) {
+    this.userService.getUserById(id).subscribe(
+      (response: User) => this.userForm.patchValue(response)
+    )
   }
 
   initPage(): void {
@@ -51,14 +62,8 @@ export class UserCreateComponent implements OnInit {
 
   onSubmit():any{
     const user: User = this.userForm.value as User;
-    this.userService.createUser(user).subscribe(
-      data => this.userService.usersChanged.next(user)
-    );
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    this.userService.updateUser(user, id).subscribe();
     this.router.navigate(['/userlist']);
   }
-
-  
-  
-  
-
 }

@@ -14,23 +14,22 @@ export class UserlistComponent implements OnInit {
   faPen = faPen;
   users: User[] = [];
   
-
   constructor(private userservice: UserServiceService) { }
 
   ngOnInit(): void {
-    this.getUsers();
-  }
-
-  getUsers(): any {
-    return this.userservice.getUsers().subscribe(
-      response => this.users = response
-      );
-  }
-
-  deleteUser(id: number){
-    this.userservice.deleteUser(id).subscribe(
-      (response: any) => console.log(response)
+    this.userservice.getUsers().subscribe(
+      data => this.users = data
     );
+    this.userservice.usersChanged.subscribe(
+      data => this.users.push(data)
+    )
+      
+  }
+
+
+  deleteUser(user: User): void{
+    this.users = this.users.filter(h => h !== user);
+    this.userservice.deleteUser(user.id!).subscribe();
   }
 
 }

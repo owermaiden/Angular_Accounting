@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../common/user';
 import { map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,13 @@ import { Observable } from 'rxjs';
 export class UserServiceService {
 
   private baseUrl = 'http://localhost:8080/api/v1/users';
+  usersChanged = new Subject<User>();
 
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
     return this.http.get<GetResponseUsers>(this.baseUrl).pipe(
-      map(response => response.data)
+      map(response  => response.data)
     );
   }
 
@@ -31,13 +32,19 @@ export class UserServiceService {
     );
   } 
 
+  public updateUser(user: User, id: number): Observable<User[]> {
+    return this.http.put<GetResponseUsers>(`${this.baseUrl}/${id}`, user).pipe(
+      map(response => response.data),
+      tap(data => console.log(data))
+    );
+  }
+
   public deleteUser(id: number): any {
     return this.http.delete<any>(`${this.baseUrl}/${id}`).pipe(
       map(response => console.log(response))
     )
   }
   
-
 }
 
 interface GetResponseUsers {
