@@ -17,7 +17,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class UserUpdateComponent implements OnInit {
   faList = faList;
   user$!: User;
-  company: Company | undefined;
+  company!: Company;
   roles: Role[] = [];
   userForm!: FormGroup; 
 
@@ -30,6 +30,7 @@ export class UserUpdateComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.initPage();
     this.userForm = this.formBuilder.group({
       firstname: new FormControl('',[Validators.required,Validators.minLength(2)]),
       lastname:  new FormControl('',[Validators.required,Validators.minLength(2)]),
@@ -37,17 +38,25 @@ export class UserUpdateComponent implements OnInit {
       phone: new FormControl('',[Validators.required]),
       password: new FormControl('',[Validators.required]),
       role: new FormControl('', [Validators.required]),
-      company: new FormControl(this.company, [Validators.required])
+      company: new FormControl('', [Validators.required])
     });
 
     const id: number = +this.route.snapshot.paramMap.get('id')!;
     this.route.paramMap.subscribe(() => { this.getUserById(id); });
-    this.initPage();
+    
   }
 
   getUserById(id: number) {
     this.userService.getUserById(id).subscribe(
-      (response: User) => this.userForm.patchValue(response)
+      (response: User) => this.userForm.patchValue({
+        id: response.id,
+        firstname: response.firstname,
+        lastname: response.lastname,
+        username: response.username,
+        company: response.company,
+        role: response.role,
+        phone: response.phone
+      })
     )
   }
 
@@ -63,7 +72,11 @@ export class UserUpdateComponent implements OnInit {
   onSubmit():any{
     const user: User = this.userForm.value as User;
     const id = +this.route.snapshot.paramMap.get('id')!;
-    this.userService.updateUser(user, id).subscribe();
+    this.userService.updateUser(user, id).subscribe(
+      data => this.userService.updateUsers(data)
+    );
     this.router.navigate(['/userlist']);
   }
+
+
 }

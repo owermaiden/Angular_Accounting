@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { User } from 'src/app/common/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { faCirclePlus, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
@@ -14,15 +14,13 @@ export class UserlistComponent implements OnInit {
   faPen = faPen;
   users: User[] = [];
   
-  constructor(private userservice: UserServiceService) { }
+  constructor(private userservice: UserServiceService) {  }
 
   ngOnInit(): void {
+    this.userservice.fetchUsers();
     this.userservice.getUsers().subscribe(
       data => this.users = data
     );
-    this.userservice.usersChanged.subscribe(
-      data => this.users.push(data)
-    )
       
   }
 

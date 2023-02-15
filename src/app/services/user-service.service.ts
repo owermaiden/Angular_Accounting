@@ -9,15 +9,37 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class UserServiceService {
 
+  private users: User[] = [];
+  private user$ = new BehaviorSubject<User[]>(this.users);
+
   private baseUrl = 'http://localhost:8080/api/v1/users';
-  usersChanged = new Subject<User>();
 
   constructor(private http: HttpClient) { }
 
-  public getUsers(): Observable<User[]> {
-    return this.http.get<GetResponseUsers>(this.baseUrl).pipe(
+  public fetchUsers(): void {
+    this.http.get<GetResponseUsers>(this.baseUrl).pipe(
       map(response  => response.data)
+    ).subscribe(
+      data => {
+        this.users = data;
+        this.user$.next(this.users);
+      }
     );
+  }
+
+  public getUsers(): Observable<User[]> {
+    return this.user$.asObservable();
+  }
+
+  public setUsers(user: User): void {
+    this.users.push(user);
+    this.user$.next(this.users);
+  }
+
+  public updateUsers(user: User): void{
+    let index: number = this.users.findIndex(item => item.id == user.id);
+    this.users[index] = user;
+    this.user$.next(this.users);
   }
 
   public getUserById(id: number | string): Observable<User> {
@@ -26,16 +48,15 @@ export class UserServiceService {
     );
   }
 
-  public createUser(user: User): Observable<User[]> {
-    return this.http.post<GetResponseUsers>(this.baseUrl, user).pipe(
+  public createUser(user: User): Observable<User> {
+    return this.http.post<GetResponseUser>(this.baseUrl, user).pipe(
       map(response => response.data)
     );
   } 
 
-  public updateUser(user: User, id: number): Observable<User[]> {
-    return this.http.put<GetResponseUsers>(`${this.baseUrl}/${id}`, user).pipe(
-      map(response => response.data),
-      tap(data => console.log(data))
+  public updateUser(user: User, id: number): Observable<User> {
+    return this.http.put<GetResponseUser>(`${this.baseUrl}/${id}`, user).pipe(
+      map(response => response.data)
     );
   }
 

@@ -52,7 +52,7 @@ export class UserCreateComponent implements OnInit {
   onSubmit():any{
     const user: User = this.userForm.value as User;
     this.userService.createUser(user).subscribe(
-      data => this.userService.usersChanged.next(user)
+      data => this.userService.setUsers(data)
     );
     this.router.navigate(['/userlist']);
   }

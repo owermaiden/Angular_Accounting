@@ -102,8 +102,7 @@
                                                                 <label>Role</label>
                                                                 <select id="role" name="role" 
                                                                         class="custom-select form-control"
-                                                                        formControlName="role"
-                                                                        >
+                                                                        formControlName="role">
                                                                     <option [ngValue]="role" *ngFor="let role of roles">{{ role.description }}</option>
                                                                 </select>
                                                             </div>
@@ -114,9 +113,10 @@
                                                         <div class="form-group m-3">
                                                             <div class="controls">
                                                                 <label>Company</label>
-                                                                <select id="company" name="company" class="custom-select form-control"
+                                                                <select id="company" name="company" 
+                                                                        class="custom-select form-control"
                                                                         formControlName="company">
-                                                                    <option [ngValue]="company">{{ company?.title }}</option>
+                                                                    <option [ngValue]="company">{{ company.title! }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
