@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { faCirclePlus, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
 import { Category } from 'src/app/common/category';
 import { CategoryService } from 'src/app/services/category.service';
 

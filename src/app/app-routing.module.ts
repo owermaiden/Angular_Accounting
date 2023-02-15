@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoryCreateComponent } from './category/category-create/category-create.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryUpdateComponent } from './category/category-update/category-update.component';
+import { ClientVendorCreateComponent } from './clientVendor/client-vendor-create/client-vendor-create.component';
+import { ClientVendorListComponent } from './clientVendor/client-vendor-list/client-vendor-list.component';
+import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update/client-vendor-update.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { UserlistComponent } from './user/userlist/userlist.component';
@@ -13,7 +16,10 @@ const routes: Routes = [
   { path: 'user-detail', component: UserCreateComponent },
   { path: 'category-list', component: CategoryListComponent},
   { path: 'category-detail/:id', component: CategoryUpdateComponent},
-  { path: 'category-detail', component: CategoryCreateComponent}
+  { path: 'category-detail', component: CategoryCreateComponent},
+  { path: 'client-list', component: ClientVendorListComponent},
+  { path: 'client-detail/:id', component: ClientVendorUpdateComponent},
+  { path: 'client-detail', component: ClientVendorCreateComponent}
  
 ];
 

@@ -103,6 +103,7 @@
                                                                 <select id="role" name="role" 
                                                                         class="custom-select form-control"
                                                                         formControlName="role">
+                                                                    <option value="null" disabled selected hidden>Choose Role</option>
                                                                     <option [ngValue]="role" *ngFor="let role of roles">{{ role.description }}</option>
                                                                 </select>
                                                             </div>
@@ -116,7 +117,7 @@
                                                                 <select id="company" name="company" 
                                                                         class="custom-select form-control"
                                                                         formControlName="company">
-                                                                    <option [ngValue]="company">{{ company?.title }}</option>
+                                                                    <option [ngValue]="company" selected>{{ company?.title }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>

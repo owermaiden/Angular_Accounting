@@ -12,6 +12,9 @@ import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryCreateComponent } from './category/category-create/category-create.component';
 import { CategoryUpdateComponent } from './category/category-update/category-update.component';
+import { ClientVendorListComponent } from './clientVendor/client-vendor-list/client-vendor-list.component';
+import { ClientVendorCreateComponent } from './clientVendor/client-vendor-create/client-vendor-create.component';
+import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update/client-vendor-update.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { CategoryUpdateComponent } from './category/category-update/category-upd
     UserUpdateComponent,
     CategoryListComponent,
     CategoryCreateComponent,
-    CategoryUpdateComponent
+    CategoryUpdateComponent,
+    ClientVendorListComponent,
+    ClientVendorCreateComponent,
+    ClientVendorUpdateComponent
   ],
   imports: [
     BrowserModule,

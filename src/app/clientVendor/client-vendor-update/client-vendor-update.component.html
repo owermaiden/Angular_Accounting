@@ -1,0 +1,170 @@
+<div class="dashboard-wrapper">
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="ecommerce-widget">
+                <header class="panel-heading text-center">
+                    <div class="row">
+                        <div class="col-11">
+                            <h3 class="panel-title">Create New Client/Vendor</h3>
+                        </div>
+                        <div class="col-1">
+                            <a routerLink="/client-list" routerLinkActive="active" ariaCurrentWhenActive="page"
+                            ><fa-icon [icon]="faList" size="2x" ></fa-icon></a>
+                        </div>
+                    </div>
+                </header>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="account" role="tabpanel"
+                                             aria-labelledby="account-tab">
+                                            <form [formGroup]="clientVendorForm" (ngSubmit)="onSubmit()">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group m-3">
+                                                            <div class="controls">
+                                                                <input type="text"
+                                                                       placeholder="Client/Vendor Name"
+                                                                       class="form-control"
+                                                                       formControlName="clientVendorName">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group m-3">
+                                                            <div class="controls">
+                                                                <select id="clientVendorType" 
+                                                                        class="form-control"
+                                                                        formControlName="clientVendorType">
+                                                                    <option value="" disabled selected hidden>Type..</option>
+                                                                    <option value="CLIENT">Client</option>
+                                                                    <option value="VENDOR">Vendor</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group m-3">
+                                                            <div class="controls">
+                                                                <input type="tel"
+                                                                       placeholder="+1 (234) 999-9999"
+                                                                       class="form-control"
+                                                                       formControlName="phone">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group m-3">
+                                                            <div class="controls">
+                                                                <input type="url"
+                                                                       placeholder="Website"
+                                                                       class="form-control"
+                                                                       formControlName="website">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div formGroupName="address">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="form-group m-3">
+                                                                <div class="controls">
+                                                                    <input type="text"
+                                                                           size="20"
+                                                                           placeholder="Address Line 1"
+                                                                           class="form-control"
+                                                                           formControlName="addressLine1">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="form-group m-3">
+                                                                <div class="controls">
+                                                                    <input type="text"
+                                                                           size="20"
+                                                                           placeholder="Address Line 2"
+                                                                           class="form-control"
+                                                                           formControlName="addressLine2">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="form-group m-3">
+                                                                <div class="controls">
+                                                                    <input type="text" 
+                                                                           size="10"
+                                                                           placeholder="City"
+                                                                           class="form-control"
+                                                                           formControlName="city">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="form-group m-3">
+                                                                <div class="controls">
+                                                                    <input type="number"
+                                                                           size="7"
+                                                                           placeholder="Zip Code"
+                                                                           class="form-control"
+                                                                           formControlName="zipCode">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="form-group m-3">
+                                                                <div class="controls">
+                                                                    <input type="text" 
+                                                                           size="5" 
+                                                                           placeholder="State"
+                                                                           class="form-control"
+                                                                           formControlName="state">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="form-group m-3">
+                                                                <div class="controls">
+                                                                    <input type="text" 
+                                                                           size="10" 
+                                                                           placeholder="Country"
+                                                                           class="form-control"
+                                                                           formControlName="country">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                    <button class="btn btn-success"
+                                                            type="submit" name="action" value="save"
+                                                            [disabled]="!clientVendorForm.valid">Update
+                                                    </button>
+                                                    <button class="btn btn-danger "
+                                                            type="reset">
+                                                        Reset
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
