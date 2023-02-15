@@ -29,8 +29,8 @@ export class CategoryService {
     return this.categories$.asObservable();
   }
 
-  public setCategories(user: Category): void {
-    this.categories.push(user);
+  public setCategories(category: Category): void {
+    this.categories.push(category);
     this.categories$.next(this.categories);
   }
 
@@ -40,13 +40,13 @@ export class CategoryService {
     this.categories$.next(this.categories);
   }
 
-  public getUserById(id: number | string): Observable<Category> {
+  public getCategoryById(id: number | string): Observable<Category> {
     return this.http.get<GetResponseCat>(`${this.baseUrl}/${id}`).pipe(
       map(response => response.data)
     );
   }
 
-  public createUser(category: Category): Observable<Category> {
+  public createCategory(category: Category): Observable<Category> {
     return this.http.post<GetResponseCat>(this.baseUrl, category).pipe(
       map(response => response.data)
     );

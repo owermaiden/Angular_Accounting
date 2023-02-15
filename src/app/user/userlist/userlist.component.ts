@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/common/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { faCirclePlus, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';

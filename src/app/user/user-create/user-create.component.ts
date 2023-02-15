@@ -16,7 +16,6 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class UserCreateComponent implements OnInit {
   faList = faList;
-  user$: User = new User;
   company: Company | undefined;
   roles: Role[] = [];
   userForm!: FormGroup; 

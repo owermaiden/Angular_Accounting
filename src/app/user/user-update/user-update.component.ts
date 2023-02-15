@@ -16,7 +16,6 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class UserUpdateComponent implements OnInit {
   faList = faList;
-  user$!: User;
   company!: Company;
   roles: Role[] = [];
   userForm!: FormGroup; 

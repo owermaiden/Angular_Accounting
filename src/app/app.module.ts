@@ -10,6 +10,8 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryCreateComponent } from './category/category-create/category-create.component';
+import { CategoryUpdateComponent } from './category/category-update/category-update.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     UserlistComponent,
     UserCreateComponent,
     UserUpdateComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryCreateComponent,
+    CategoryUpdateComponent
   ],
   imports: [
     BrowserModule,
