@@ -15,6 +15,9 @@ import { CategoryUpdateComponent } from './category/category-update/category-upd
 import { ClientVendorListComponent } from './clientVendor/client-vendor-list/client-vendor-list.component';
 import { ClientVendorCreateComponent } from './clientVendor/client-vendor-create/client-vendor-create.component';
 import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update/client-vendor-update.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductCreateComponent } from './product/product-create/product-create.component';
+import { ProductUpdateComponent } from './product/product-update/product-update.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update
     CategoryUpdateComponent,
     ClientVendorListComponent,
     ClientVendorCreateComponent,
-    ClientVendorUpdateComponent
+    ClientVendorUpdateComponent,
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductUpdateComponent
   ],
   imports: [
     BrowserModule,
