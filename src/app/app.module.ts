@@ -9,13 +9,15 @@ import { UserlistComponent } from './user/userlist/userlist.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserUpdateComponent } from './user/user-update/user-update.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserlistComponent,
     UserCreateComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
