@@ -6,6 +6,9 @@ import { CategoryUpdateComponent } from './category/category-update/category-upd
 import { ClientVendorCreateComponent } from './clientVendor/client-vendor-create/client-vendor-create.component';
 import { ClientVendorListComponent } from './clientVendor/client-vendor-list/client-vendor-list.component';
 import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update/client-vendor-update.component';
+import { PurchaseInvoiceCreateComponent } from './invoice/purchase-invoice-create/purchase-invoice-create.component';
+import { PurchaseInvoiceListComponent } from './invoice/purchase-invoice-list/purchase-invoice-list.component';
+import { PurchaseInvoiceUpdateComponent } from './invoice/purchase-invoice-update/purchase-invoice-update.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
@@ -25,7 +28,10 @@ const routes: Routes = [
   { path: 'client-detail', component: ClientVendorCreateComponent},
   { path: 'product-list', component: ProductListComponent},
   { path: 'product-detail/:id', component: ProductUpdateComponent},
-  { path: 'product-detail', component: ProductCreateComponent}
+  { path: 'product-detail', component: ProductCreateComponent},
+  { path: 'pinvoice-list', component: PurchaseInvoiceListComponent},
+  { path: 'pinvoice-detail/:id', component: PurchaseInvoiceUpdateComponent},
+  { path: 'pinvoice-detail', component: PurchaseInvoiceCreateComponent}
  
 ];
 

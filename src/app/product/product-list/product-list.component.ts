@@ -24,8 +24,11 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(product: Product): void{
-    this.products = this.products.filter(h => h !== product);
-    this.productService.deleteProduct(product.id!).subscribe();
+    this.productService.deleteProduct(product.id!).subscribe(
+      () => {
+        this.products = this.products.filter(h => h !== product)}
+    );
+    
   }
 
 }

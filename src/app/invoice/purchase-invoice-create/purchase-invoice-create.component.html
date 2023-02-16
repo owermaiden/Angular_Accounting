@@ -1,0 +1,72 @@
+<div class="dashboard-wrapper mt-0">
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content mt-1 pt-0">
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-12 pl-1 pr-1">
+                        <div class="card mb-0">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center">Purchase Invoice</h4>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade mt-2 show active" id="account" role="tabpanel"
+                                             aria-labelledby="account-tab">
+                                            <form class="needs-validation" novalidate
+                                                  [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="controls">
+                                                                <label>Invoice No</label>
+                                                                <input type="text" placeholder="Invoice No" readonly
+                                                                       class="form-control" required="required" aria-invalid="false"
+                                                                       formControlName="invoiceNo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="controls">
+                                                                <label>Date</label>
+                                                                <input type="text" placeholder="Date" readonly
+                                                                       class="form-control" required="required" aria-invalid="false"
+                                                                       formControlName="date">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="controls">
+                                                                <label>Vendor</label>
+                                                                <select id="clientVendor" name="clientVendor" 
+                                                                        class="custom-select form-control"
+                                                                        formControlName="clientVendor">
+                                                                    <option [ngValue]="client" *ngFor="let client of clientVendors">
+                                                                        {{ client.clientVendorName }}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
+                                                    <button class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
+                                                            type="submit" name="action" value="save">Save
+                                                    </button>
+                                                    <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
+                                                            type="reset">Reset
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-invoice-product-create></app-invoice-product-create>
+            </div>
+        </div>
+    </div>
+</div>

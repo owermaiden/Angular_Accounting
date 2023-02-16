@@ -29,14 +29,14 @@ export class ProductService {
     return this.products$.asObservable();
   }
 
-  public setProducts(Product: Product): void {
-    this.products.push(Product);
+  public setProducts(product: Product): void {
+    this.products.push(product);
     this.products$.next(this.products);
   }
 
-  public updateProducts(Product: Product): void{
-    let index: number = this.products.findIndex(item => item.id == Product.id);
-    this.products[index] = Product;
+  public updateProducts(product: Product): void{
+    let index: number = this.products.findIndex(item => item.id == product.id);
+    this.products[index] = product;
     this.products$.next(this.products);
   }
 
@@ -46,14 +46,14 @@ export class ProductService {
     );
   }
 
-  public createProduct(Product: Product): Observable<Product> {
-    return this.http.post<GetResponse>(this.baseUrl, Product).pipe(
+  public createProduct(product: Product): Observable<Product> {
+    return this.http.post<GetResponse>(this.baseUrl, product).pipe(
       map(response => response.data)
     );
   } 
 
-  public updateProduct(Product: Product, id: number): Observable<Product> {
-    return this.http.put<GetResponse>(`${this.baseUrl}/${id}`, Product).pipe(
+  public updateProduct(product: Product, id: number): Observable<Product> {
+    return this.http.put<GetResponse>(`${this.baseUrl}/${id}`, product).pipe(
       map(response => response.data)
     );
   }
