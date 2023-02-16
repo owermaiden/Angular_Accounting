@@ -49,12 +49,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                                    <button class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
-                                                            type="submit" name="action" value="save">Save
+                                                <div class="col-12 d-flex flex-sm-row flex-column mt-2 justify-content-end">
+                                                    <button class="btn btn-success"
+                                                            type="submit" name="action" value="save"
+                                                            [disabled]="!invoiceForm.valid">Save
                                                     </button>
-                                                    <button class="btn btn-danger mb-2 mb-sm-0 mr-sm-2"
-                                                            type="reset">Reset
+                                                    <button class="btn btn-danger "
+                                                            type="reset">
+                                                        Reset
                                                     </button>
                                                 </div>
                                             </form>
