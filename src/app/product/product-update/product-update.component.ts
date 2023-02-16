@@ -26,7 +26,7 @@ export class ProductUpdateComponent implements OnInit {
   ngOnInit(): void {
       this.initPage();
       this.productForm = this.formBuilder.group({
-        productName: new FormControl('',[Validators.required,Validators.minLength(2)]),
+        name: new FormControl('',[Validators.required,Validators.minLength(2)]),
         lowLimitAlert: new FormControl('',[Validators.required]),
         productUnit: new FormControl('',[Validators.required]),
         category: new FormControl('',[Validators.required])
@@ -38,12 +38,7 @@ export class ProductUpdateComponent implements OnInit {
 
   getProductById(id: number) {
     this.productService.getProductById(id).subscribe(
-      (response: Product) => this.productForm.patchValue({
-        productName: response.name,
-        lowLimitAlert: response.lowLimitAlert,
-        productUnit: response.productUnit,
-        category: JSON.stringify(response.category)
-      })
+      (response: Product) => this.productForm.patchValue(response)
     )
 
   }
