@@ -24,7 +24,7 @@ export class ProductCreateComponent implements OnInit{
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      name: new FormControl('',[Validators.required,Validators.minLength(2)]),
+      productName: new FormControl('',[Validators.required,Validators.minLength(2)]),
       lowLimitAlert: new FormControl('',[Validators.required]),
       productUnit: new FormControl('',[Validators.required]),
       category: new FormControl('',[Validators.required])
