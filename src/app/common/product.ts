@@ -7,6 +7,6 @@ export class Product {
         public quantityInStock: number,
         public lowLimitAlert: number,
         public productUnit: string,
-        public category: Category
+        public category?: Category
     ){}
 }
