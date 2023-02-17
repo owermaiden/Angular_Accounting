@@ -9,8 +9,8 @@ import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-purchase-invoice-list',
-  templateUrl: './purchase-invoice-list.component.html',
-  styleUrls: ['./purchase-invoice-list.component.css']
+  templateUrl: './invoice-list.component.html',
+  styleUrls: ['./invoice-list.component.css']
 })
 export class PurchaseInvoiceListComponent implements OnInit{
   faCheck = faCircleCheck;
@@ -29,12 +29,12 @@ export class PurchaseInvoiceListComponent implements OnInit{
               private router: Router){}
 
   ngOnInit(): void {
-    this.initPage();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.initPage();
       }
     });
+    this.initPage();
   }
 
   initPage(){

@@ -9,8 +9,8 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-purchase-invoice-create',
-  templateUrl: './purchase-invoice-create.component.html',
-  styleUrls: ['./purchase-invoice-create.component.css']
+  templateUrl: './invoice-create.component.html',
+  styleUrls: ['./invoice-create.component.css']
 })
 export class PurchaseInvoiceCreateComponent implements OnInit{
   invoiceForm!: FormGroup;

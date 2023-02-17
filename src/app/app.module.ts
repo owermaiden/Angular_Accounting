@@ -18,9 +18,9 @@ import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
-import { PurchaseInvoiceListComponent } from './invoice/purchase-invoice-list/purchase-invoice-list.component';
-import { PurchaseInvoiceCreateComponent } from './invoice/purchase-invoice-create/purchase-invoice-create.component';
-import { PurchaseInvoiceUpdateComponent } from './invoice/purchase-invoice-update/purchase-invoice-update.component';
+import { PurchaseInvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
+import { PurchaseInvoiceCreateComponent } from './invoice/invoice-create/invoice-create.component';
+import { PurchaseInvoiceUpdateComponent } from './invoice/invoice-update/invoice-update.component';
 import { InvoiceProductCreateComponent } from './invoiceProduct/invoice-product-create/invoice-product-create.component';
 
 @NgModule({
