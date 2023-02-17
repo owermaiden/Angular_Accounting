@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Invoice } from '../common/invoice';
+import { InvoiceProduct } from '../common/invoice-product';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,13 @@ export class InvoiceService {
     );
   } 
 
+  public createInvoiceProducts(id: number, iProduct: InvoiceProduct ): Observable<InvoiceProduct> {
+    return this.http.post<GetInvProResponse>(`${this.baseUrl}/invoice-product/${id}`, iProduct).pipe(
+      map(response => response.data),
+      tap(data => console.log(data))
+    )
+  }
+
   public updateInvoice(invoice: Invoice, id: number): Observable<Invoice> {
     return this.http.put<GetResponse>(`${this.baseUrl}/${id}`, invoice).pipe(
       map(response => response.data)
@@ -110,4 +118,8 @@ interface GetResponses {
 
 interface GetResponse {
   data: Invoice;
+}
+
+interface GetInvProResponse {
+  data: InvoiceProduct;
 }

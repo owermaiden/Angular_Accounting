@@ -7,16 +7,17 @@
                     <div class="tab-content">
                         <div class="tab-pane fade mt-2 show active" id="products" role="tabpanel"
                              aria-labelledby="account-tab">
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" [formGroup]="iProductForm" (ngSubmit)="onSubmit()" novalidate>
                                 <div class="row">
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             <div class="controls">
-                                                <label>Product Name</label>
-                                                <select id="product" class="form-control" th:field="*{product}">
-                                                    <option th:each= "product:${products}"
-                                                            th:value="${product.id}"
-                                                            th:text="${product.name}"></option>
+                                                <label>Product</label>
+                                                <select id="product" class="form-control"
+                                                        formControlName="product" >
+                                                    <option [ngValue]="product" *ngFor="let product of products">
+                                                        {{ product.name }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -25,34 +26,38 @@
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label>Quantity</label>
-                                                <input type="number" th:field="*{quantity}" placeholder="Quantity"
-                                                       class="form-control" aria-invalid="false">
+                                                <input type="number" placeholder="Quantity"
+                                                       class="form-control" aria-invalid="false"
+                                                       formControlName="quantity">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             <div class="controls">
-                                                <label>Price (without tax)</label>
-                                                <input type="number" th:field="*{price}" placeholder="Price" step=".01"
-                                                       class="form-control" aria-invalid="false">
+                                                <label>Price ($)</label>
+                                                <input type="number" placeholder="Price" step=".01"
+                                                       class="form-control" aria-invalid="false"
+                                                       formControlName="price">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             <div class="controls">
-                                                <label>Tax Rate</label>
-                                                <input type="number" th:field="*{tax}" placeholder="Tax"
-                                                       class="form-control" aria-invalid="false">
+                                                <label>Tax (%)</label>
+                                                <input type="number" placeholder="Tax"
+                                                       class="form-control" aria-invalid="false"
+                                                       formControlName="tax">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-3 mt-sm-2">
-                                    <button class="btn btn-success mb-2 mb-sm-0 mr-sm-2"
-                                            type="submit" name="action" value="addItem">Add Product
-                                    </button>
+                                    <button class="btn btn-success"
+                                            type="submit" name="action" value="save"
+                                            [disabled]="!iProductForm.valid">Add
+                                     </button>
                                 </div>
                             </form>
                         </div>
@@ -78,25 +83,26 @@
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th>Product Name</th>
+                                            <th>Product</th>
                                             <th>Quantity</th>
-                                            <th>Unit Price (without tax)</th>
-                                            <th>Tax Rate</th>
-                                            <th>Total (with tax)</th>
-                                            <th>Remove</th>
+                                            <th>Price</th>
+                                            <th>Tax</th>
+                                            <th>Total</th>
+                                            <th>Delete</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="invoiceProduct,comStat : ${invoiceProducts}">
-                                            <td th:text="${comStat.count}"></td>
-                                            <td th:text="${invoiceProduct.product.name}"></td>
-                                            <td th:text="${invoiceProduct.quantity}"></td>
-                                            <td th:text="${invoiceProduct.price}"></td>
-                                            <td th:text="${invoiceProduct.tax}"></td>
-                                            <td th:text="${invoiceProduct.total}"></td>
-                                            <td class="actions">
-                                                <a th:href="@{/purchaseInvoices/removeInvoiceProduct/{invoiceId}/{invoiceProuductId}(invoiceId=${invoice.getId()}, invoiceProuductId=${invoiceProduct.getId()})}">
-                                                    <button class="ft-minus btn-danger bg-light-primary" type="submit"></button>
+                                        <tr *ngFor="let iproduct of invProducts; let i = index">
+                                            <td >{{ i + 1 }}</td>
+                                            <td >{{ iproduct.product.name }}</td>
+                                            <td >{{ iproduct.quantity }}</td>
+                                            <td >{{ iproduct.price }}</td>
+                                            <td >{{ iproduct.tax }}</td>
+                                            <td >{{ iproduct.total }}</td>
+                                            <td class="del justify-content-center">
+                                                <a type="button"
+                                                (click)="deleteInvProduct(iproduct)"
+                                                ><fa-icon [icon]="faTrashCan"  ></fa-icon>
                                                 </a>
                                             </td>
                                         </tr>

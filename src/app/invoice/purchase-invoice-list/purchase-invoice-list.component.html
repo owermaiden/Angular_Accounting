@@ -51,13 +51,13 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="let invoice of invoices; let i = index">
-                                                                    <td >{{ i }}</td>
+                                                                    <td >{{ i + 1 }}</td>
                                                                     <td >{{ invoice.invoiceNo }}</td>
                                                                     <td >{{ invoice.clientVendor?.clientVendorName }}</td>
                                                                     <td >{{ invoice.date | date }}</td>
                                                                     <td >{{ invoice.total }}</td>
                                                                     <td >{{ invoice.tax }}</td>
-                                                                    <td >{{ invoice.total }}</td>
+                                                                    <td >{{ invoice.total! + invoice.tax! }}</td>
                                                                     <td class="d-flex justify-content-center">
                                                                         <a routerLink="/pinvoice-detail/{{invoice.id}}" 
                                                                         routerLinkActive="active" 
@@ -70,7 +70,7 @@
                                                                         <a type="button"
                                                                         (click)="deleteInv(invoice)"
                                                                         ><fa-icon [icon]="faTrashCan"  ></fa-icon>
-                                                                    </a>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
