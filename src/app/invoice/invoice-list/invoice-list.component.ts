@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { faCirclePlus, faTrashCan, faPen, faCheck, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faTrashCan, faPen, faCheck, faCircleCheck, faPrint } from '@fortawesome/free-solid-svg-icons';
 import { Invoice } from 'src/app/common/invoice';
 import { CategoryService } from 'src/app/services/category.service';
 import { ClientVendorService } from 'src/app/services/client-vendor.service';
@@ -17,6 +17,7 @@ export class InvoiceListComponent implements OnInit{
   faCheckSimple = faCheck;
   faTrashCan = faTrashCan;
   faPen = faPen;
+  faPrint = faPrint;
   faPlus = faCirclePlus;
   invoices: Invoice[] = [];
   type: string = '';
@@ -60,5 +61,9 @@ export class InvoiceListComponent implements OnInit{
     this.invoiceService.approveInvoice(invoice.id!).subscribe(
       () => this.invoiceService.fetchInvoices(this.type)
     )
+  }
+
+  printInvoice(invoice: Invoice){
+    console.log('Convert to pdf');
   }
 }
