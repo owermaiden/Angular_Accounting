@@ -11,7 +11,8 @@
                                     <h3 *ngIf="type==='SALE'" class="panel-title">Sale Invoice List</h3>
                                 </div>
                                 <div class="col-1">
-                                    <a routerLink="/pinvoice-detail" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                    <a [routerLink]="['/pinvoice-detail', type]"
+                                       routerLinkActive="active" ariaCurrentWhenActive="page"
                                     ><fa-icon [icon]="faPlus" size="2x" ></fa-icon></a>
                                 </div>
                             </div>
@@ -71,21 +72,24 @@
                                                                         </div>
                                                                         
                                                                     </td>
-                                                                    <td class="d-flex justify-content-around align-middle">
-                                                                        <h6 *ngIf="invoice.invoiceStatus==='APPROVED'"
-                                                                        class="align-middle pt-2"><small>Approved</small></h6>
-                                                                        <a routerLink="/pinvoice-detail/{{invoice.id}}" 
-                                                                            routerLinkActive="active" 
-                                                                            ariaCurrentWhenActive="page"
-                                                                            type="button"
-                                                                            *ngIf="invoice.invoiceStatus!=='APPROVED'">
-                                                                            <fa-icon [icon]="faPen"></fa-icon>
-                                                                        </a>
-                                                                        <a type="button"
-                                                                            (click)="deleteInv(invoice)"
-                                                                            *ngIf="invoice.invoiceStatus!=='APPROVED'">
-                                                                            <fa-icon [icon]="faTrashCan"></fa-icon>
-                                                                        </a>
+                                                                    <td class="align-middle mx-auto text-center">
+                                                                        <div class="d-flex justify-content-around align-items-center w-90 m-0">
+                                                                            <h6 *ngIf="invoice.invoiceStatus==='APPROVED'"
+                                                                            class="d-flex align-items-center mt-1"
+                                                                            ><small>Approved</small></h6>
+                                                                            <a routerLink="/pinvoice-detail/{{invoice.id}}" 
+                                                                                routerLinkActive="active" 
+                                                                                ariaCurrentWhenActive="page"
+                                                                                type="button"
+                                                                                *ngIf="invoice.invoiceStatus!=='APPROVED'">
+                                                                                <fa-icon [icon]="faPen"></fa-icon>
+                                                                            </a>
+                                                                            <a type="button"
+                                                                                (click)="deleteInv(invoice)"
+                                                                                *ngIf="invoice.invoiceStatus!=='APPROVED'">
+                                                                                <fa-icon [icon]="faTrashCan"></fa-icon>
+                                                                            </a>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

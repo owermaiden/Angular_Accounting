@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { faCirclePlus, faTrashCan, faPen, faCheck, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Invoice } from 'src/app/common/invoice';
 import { CategoryService } from 'src/app/services/category.service';
@@ -25,9 +25,19 @@ export class PurchaseInvoiceListComponent implements OnInit{
               private categoryService: CategoryService,
               private clientService: ClientVendorService,
               private productService: ProductService,
-              private route: ActivatedRoute ){}
+              private route: ActivatedRoute,
+              private router: Router){}
 
   ngOnInit(): void {
+    this.initPage();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.initPage();
+      }
+    });
+  }
+
+  initPage(){
     this.type = this.route.snapshot.paramMap.get('type')!;
     this.categoryService.fetchCtegories();
     this.clientService.fetchClientVendors();
