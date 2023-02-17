@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faCirclePlus, faTrashCan, faPen, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
+import { faCirclePlus, faTrashCan, faPen, faCheck, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Invoice } from 'src/app/common/invoice';
 import { CategoryService } from 'src/app/services/category.service';
 import { ClientVendorService } from 'src/app/services/client-vendor.service';
@@ -13,22 +14,26 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class PurchaseInvoiceListComponent implements OnInit{
   faCheck = faCircleCheck;
+  faCheckSimple = faCheck;
   faTrashCan = faTrashCan;
   faPen = faPen;
   faPlus = faCirclePlus;
   invoices: Invoice[] = [];
+  type: string = '';
 
   constructor(private invoiceService: InvoiceService,
               private categoryService: CategoryService,
               private clientService: ClientVendorService,
-              private productService: ProductService ){}
+              private productService: ProductService,
+              private route: ActivatedRoute ){}
 
   ngOnInit(): void {
+    this.type = this.route.snapshot.paramMap.get('type')!;
     this.categoryService.fetchCtegories();
     this.clientService.fetchClientVendors();
     this.productService.fetchProducts();
-    this.invoiceService.fetchInvoices('PURCHASE');
-    this.invoiceService.getInvoices('PURCHASE').subscribe(
+    this.invoiceService.fetchInvoices(this.type);
+    this.invoiceService.getInvoices(this.type).subscribe(
       data => this.invoices = data
     )
   }
@@ -41,8 +46,9 @@ export class PurchaseInvoiceListComponent implements OnInit{
     );
   }
   approveInvoice(invoice: Invoice){
+    console.log(invoice);
     this.invoiceService.approveInvoice(invoice.id!).subscribe(
-      data => console.log(data)
+      () => this.invoiceService.fetchInvoices(this.type)
     )
   }
 }

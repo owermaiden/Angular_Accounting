@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ClientVendor } from 'src/app/common/client-vendor';
 import { Invoice } from 'src/app/common/invoice';
 import { InvoiceProduct } from 'src/app/common/invoice-product';
@@ -21,8 +21,7 @@ export class PurchaseInvoiceCreateComponent implements OnInit{
   constructor(private invoiceService: InvoiceService,
               private formBuilder: FormBuilder,
               private clientService: ClientVendorService,
-              private router: Router,
-              private route: ActivatedRoute){}
+              private router: Router){}
 
   ngOnInit(): void {
     this.invoiceForm = this.formBuilder.group({
@@ -46,6 +45,7 @@ export class PurchaseInvoiceCreateComponent implements OnInit{
 
   onSubmit(){
     const invoice: Invoice = this.invoiceForm.value as Invoice;
+    invoice.invoiceProducts = [];
     this.invProducts.forEach(
       iProduct => this.invoiceService.createInvoiceProducts(this.id!, iProduct).subscribe(
         data => invoice.invoiceProducts?.push(data)

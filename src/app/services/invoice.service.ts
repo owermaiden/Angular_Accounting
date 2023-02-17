@@ -58,6 +58,7 @@ export class InvoiceService {
     } else{
       let index: number = this.purchaseInvoices.findIndex(item => item.id == invoice.id);
       this.purchaseInvoices[index] = invoice;
+      console.log(invoice);
       this.purchaseInvoices$.next(this.purchaseInvoices);
     }
     
@@ -71,15 +72,13 @@ export class InvoiceService {
 
   public createInvoice(invoice: Invoice, type: string): Observable<Invoice> {
     return this.http.post<GetResponse>(`${this.baseUrl}/create/${type}`, invoice).pipe(
-      map(response => response.data),
-      tap(data => console.log(data))
+      map(response => response.data)
     );
   } 
 
   public createInvoiceProducts(id: number, iProduct: InvoiceProduct ): Observable<InvoiceProduct> {
     return this.http.post<GetInvProResponse>(`${this.baseUrl}/invoice-product/${id}`, iProduct).pipe(
-      map(response => response.data),
-      tap(data => console.log(data))
+      map(response => response.data)
     )
   }
 

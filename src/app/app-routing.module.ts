@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'product-list', component: ProductListComponent},
   { path: 'product-detail/:id', component: ProductUpdateComponent},
   { path: 'product-detail', component: ProductCreateComponent},
-  { path: 'pinvoice-list', component: PurchaseInvoiceListComponent},
+  { path: 'pinvoice-list/:type', component: PurchaseInvoiceListComponent},
   { path: 'pinvoice-detail/:id', component: PurchaseInvoiceUpdateComponent},
   { path: 'pinvoice-detail', component: PurchaseInvoiceCreateComponent}
  
