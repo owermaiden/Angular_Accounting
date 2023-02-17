@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCirclePlus, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faTrashCan, faPen, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Invoice } from 'src/app/common/invoice';
 import { CategoryService } from 'src/app/services/category.service';
 import { ClientVendorService } from 'src/app/services/client-vendor.service';
@@ -12,9 +12,10 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./purchase-invoice-list.component.css']
 })
 export class PurchaseInvoiceListComponent implements OnInit{
-  faPlus = faCirclePlus;
+  faCheck = faCircleCheck;
   faTrashCan = faTrashCan;
   faPen = faPen;
+  faPlus = faCirclePlus;
   invoices: Invoice[] = [];
 
   constructor(private invoiceService: InvoiceService,
@@ -38,5 +39,10 @@ export class PurchaseInvoiceListComponent implements OnInit{
         this.invoices = this.invoices.filter(h => h !== invoice);
       }
     );
+  }
+  approveInvoice(invoice: Invoice){
+    this.invoiceService.approveInvoice(invoice.id!).subscribe(
+      data => console.log(data)
+    )
   }
 }

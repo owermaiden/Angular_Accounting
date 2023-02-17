@@ -28,13 +28,13 @@
                                                                class="table table-striped table-bordered file-export"
                                                                style="width:100%">
                                                             <col style="width:3%">
-                                                            <col style="width:15%">
-                                                            <col style="width:25%">
+                                                            <col style="width:10%">
                                                             <col style="width:20%">
-                                                            <col style="width:12%">
-                                                            <col style="width:12%">
-                                                            <col style="width:12%">
-                                                            <col style="width:5%">
+                                                            <col style="width:15%">
+                                                            <col style="width:10%">
+                                                            <col style="width:8%">
+                                                            <col style="width:10%">
+                                                            <col style="width:3%">
                                                             <col style="width:5%">
                                                             <thead>
                                                                 <tr>
@@ -45,8 +45,8 @@
                                                                     <th scope="col">Price ($)</th>
                                                                     <th scope="col">Tax (%)</th>
                                                                     <th scope="col">Total ($)</th>
-                                                                    <th scope="col">Edit</th>
-                                                                    <th scope="col">Del</th>
+                                                                    <th scope="col">Ok</th>
+                                                                    <th scope="col">Status</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -55,21 +55,29 @@
                                                                     <td >{{ invoice.invoiceNo }}</td>
                                                                     <td >{{ invoice.clientVendor?.clientVendorName }}</td>
                                                                     <td >{{ invoice.date | date }}</td>
-                                                                    <td >{{ invoice.total }}</td>
+                                                                    <td >{{ invoice.total | currency}}</td>
                                                                     <td >{{ invoice.tax }}</td>
                                                                     <td >{{ invoice.total! + invoice.tax! }}</td>
-                                                                    <td class="d-flex justify-content-center">
-                                                                        <a routerLink="/pinvoice-detail/{{invoice.id}}" 
-                                                                        routerLinkActive="active" 
-                                                                        ariaCurrentWhenActive="page"
-                                                                        type="button"
-                                                                        ><fa-icon [icon]="faPen"  ></fa-icon>
+                                                                    <td >
+                                                                        <a (click)="approveInvoice(invoice)"
+                                                                            type="button"
+                                                                            [ngStyle]="{'pointer-events': invoice.invoiceStatus==='APPROVED' ? 'none' : 'auto' }">
+                                                                            <fa-icon [icon]="faCheck"></fa-icon>
                                                                         </a>
                                                                     </td>
-                                                                    <td class="del justify-content-center">
+                                                                    <td class="d-flex justify-content-around">
+                                                                        <p *ngIf="invoice.invoiceStatus==='APPROVED'"><small>Approved</small></p>
+                                                                        <a routerLink="/pinvoice-detail/{{invoice.id}}" 
+                                                                            routerLinkActive="active" 
+                                                                            ariaCurrentWhenActive="page"
+                                                                            type="button"
+                                                                            *ngIf="invoice.invoiceStatus!=='APPROVED'">
+                                                                            <fa-icon [icon]="faPen"></fa-icon>
+                                                                        </a>
                                                                         <a type="button"
-                                                                        (click)="deleteInv(invoice)"
-                                                                        ><fa-icon [icon]="faTrashCan"  ></fa-icon>
+                                                                            (click)="deleteInv(invoice)"
+                                                                            *ngIf="invoice.invoiceStatus!=='APPROVED'">
+                                                                            <fa-icon [icon]="faTrashCan"></fa-icon>
                                                                         </a>
                                                                     </td>
                                                                 </tr>

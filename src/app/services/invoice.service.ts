@@ -96,6 +96,12 @@ export class InvoiceService {
     )
   }
 
+  public approveInvoice(id: number): Observable<Invoice>{
+    return this.http.get<GetResponse>(`${this.baseUrl}/approve/${id}`).pipe(
+      map(response => response.data)
+    )
+  }
+
   handleError(error:any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
