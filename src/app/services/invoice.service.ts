@@ -76,22 +76,10 @@ export class InvoiceService {
     );
   } 
 
-  public createInvoiceProducts(id: number, iProduct: InvoiceProduct ): Observable<InvoiceProduct> {
-    return this.http.post<GetInvProResponse>(`${this.baseUrl}/invoice-products/${id}`, iProduct).pipe(
-      map(response => response.data)
-    )
-  }
-
   public updateInvoice(invoice: Invoice, id: number): Observable<Invoice> {
     return this.http.put<GetResponse>(`${this.baseUrl}/${id}`, invoice).pipe(
       map(response => response.data)
     );
-  }
-
-  public getInvoiceProducts(id: number):Observable<InvoiceProduct[]>{
-    return this.http.get<GetResponses>(`${this.baseUrl}/invoice-products/${id}`).pipe(
-      map(response => response.data)
-    ) 
   }
 
   public deleteInvoice(id: number): any {
@@ -106,6 +94,22 @@ export class InvoiceService {
       map(response => response.data)
     )
   }
+
+//------------------------ INV-PRODUCT ----------------------------------------------------------
+
+  public createInvoiceProducts(id: number, iProduct: InvoiceProduct ): Observable<InvoiceProduct> {
+    return this.http.post<GetInvProResponse>(`${this.baseUrl}/invoice-products/${id}`, iProduct).pipe(
+      map(response => response.data)
+    )
+  }
+
+  public getInvoiceProducts(id: number):Observable<InvoiceProduct[]>{
+    return this.http.get<GetResponses>(`${this.baseUrl}/invoice-products/${id}`).pipe(
+      map(response => response.data)
+    ) 
+  }
+
+//------------------------ ERROR ----------------------------------------------------------
 
   handleError(error:any) {
     let errorMessage = '';
