@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InvoiceProduct } from 'src/app/common/invoice-product';
 import { Product } from 'src/app/common/product';
-import { InvoiceService } from 'src/app/services/invoice.service';
 import { ProductService } from 'src/app/services/product.service';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,12 +13,11 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 export class InvoiceProductCreateComponent implements OnInit {
   faTrashCan = faTrashCan;
   products: Product[] = [];
-  invProducts: InvoiceProduct[] = [];
-  iProductForm!: FormGroup;
+  @Input() invProducts: InvoiceProduct[] = [];
   @Output() iProductsEmitter = new EventEmitter<InvoiceProduct[]>();
+  iProductForm!: FormGroup;
 
   constructor(private productService: ProductService,
-              private invoiceService: InvoiceService,
               private formBuilder: FormBuilder){}
 
   ngOnInit(): void {

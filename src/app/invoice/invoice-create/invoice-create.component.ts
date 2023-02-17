@@ -12,7 +12,7 @@ import { InvoiceService } from 'src/app/services/invoice.service';
   templateUrl: './invoice-create.component.html',
   styleUrls: ['./invoice-create.component.css']
 })
-export class PurchaseInvoiceCreateComponent implements OnInit{
+export class InvoiceCreateComponent implements OnInit{
   invoiceForm!: FormGroup;
   clientVendors: ClientVendor[] = [];
   invProducts: InvoiceProduct[] = [];

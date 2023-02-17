@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.css']
 })
-export class PurchaseInvoiceListComponent implements OnInit{
+export class InvoiceListComponent implements OnInit{
   faCheck = faCircleCheck;
   faCheckSimple = faCheck;
   faTrashCan = faTrashCan;
@@ -32,6 +32,7 @@ export class PurchaseInvoiceListComponent implements OnInit{
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.initPage();
+        return;
       }
     });
     this.initPage();
@@ -56,7 +57,6 @@ export class PurchaseInvoiceListComponent implements OnInit{
     );
   }
   approveInvoice(invoice: Invoice){
-    console.log(invoice);
     this.invoiceService.approveInvoice(invoice.id!).subscribe(
       () => this.invoiceService.fetchInvoices(this.type)
     )
