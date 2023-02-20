@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Event, RouterEvent, Router} from '@angular/router';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { faCirclePlus, faTrashCan, faPen, faCheck, faCircleCheck, faPrint } from '@fortawesome/free-solid-svg-icons';
+import { filter, Subscription } from 'rxjs';
 import { Invoice } from 'src/app/common/invoice';
 import { CategoryService } from 'src/app/services/category.service';
 import { ClientVendorService } from 'src/app/services/client-vendor.service';
@@ -12,7 +14,7 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.css']
 })
-export class InvoiceListComponent implements OnInit{
+export class InvoiceListComponent implements OnInit, OnDestroy{
   faCheck = faCircleCheck;
   faCheckSimple = faCheck;
   faTrashCan = faTrashCan;
@@ -21,22 +23,25 @@ export class InvoiceListComponent implements OnInit{
   faPlus = faCirclePlus;
   invoices: Invoice[] = [];
   type: string = '';
+  private _routerSub = Subscription.EMPTY;
 
   constructor(private invoiceService: InvoiceService,
               private categoryService: CategoryService,
               private clientService: ClientVendorService,
               private productService: ProductService,
               private route: ActivatedRoute,
-              private router: Router){}
+              private router: Router)
+  {
+    this._routerSub = router.events.pipe(
+      filter((e: Event): e is RouterEvent => e instanceof RouterEvent)
+    ).subscribe((e: RouterEvent) => {
+    if ((e instanceof NavigationEnd && e.url === '/pinvoice-list/SALE') || (e instanceof NavigationEnd && e.url === '/pinvoice-list/PURCHASE')){
+      this.initPage();
+    }
+    });
+  }
 
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.initPage();
-        return;
-      }
-    });
-    this.initPage();
   }
 
   initPage(){
@@ -65,5 +70,9 @@ export class InvoiceListComponent implements OnInit{
 
   printInvoice(invoice: Invoice){
     console.log('Convert to pdf');
+  }
+
+  ngOnDestroy(){
+    this._routerSub.unsubscribe();
   }
 }
