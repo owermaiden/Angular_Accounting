@@ -6,6 +6,7 @@ import { CategoryUpdateComponent } from './category/category-update/category-upd
 import { ClientVendorCreateComponent } from './clientVendor/client-vendor-create/client-vendor-create.component';
 import { ClientVendorListComponent } from './clientVendor/client-vendor-list/client-vendor-list.component';
 import { ClientVendorUpdateComponent } from './clientVendor/client-vendor-update/client-vendor-update.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { InvoiceCreateComponent } from './invoice/invoice-create/invoice-create.component';
 import { InvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
 import { InvoiceUpdateComponent } from './invoice/invoice-update/invoice-update.component';
@@ -19,6 +20,7 @@ import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { UserlistComponent } from './user/userlist/userlist.component';
 
 const routes: Routes = [
+  { path: '', component: DashboardComponent },
   { path: 'userlist', component: UserlistComponent },
   { path: 'user-update/:id', component: UserUpdateComponent },
   { path: 'user-detail', component: UserCreateComponent },

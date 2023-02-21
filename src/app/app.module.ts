@@ -24,6 +24,7 @@ import { InvoiceUpdateComponent } from './invoice/invoice-update/invoice-update.
 import { InvoiceProductCreateComponent } from './invoiceProduct/invoice-product-create/invoice-product-create.component';
 import { StockReportComponent } from './report/stock-report/stock-report.component';
 import { ProfitLossComponent } from './report/profit-loss/profit-loss.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProfitLossComponent } from './report/profit-loss/profit-loss.component'
     InvoiceUpdateComponent,
     InvoiceProductCreateComponent,
     StockReportComponent,
-    ProfitLossComponent
+    ProfitLossComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

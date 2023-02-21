@@ -95,6 +95,13 @@ export class InvoiceService {
     )
   }
 
+  public fetchLastThree(): Observable<Invoice[]> {
+    return this.http.get<GetResponses>(`${this.baseUrl}/lastthree`).pipe(
+      map(response => response.data),
+      tap(response => console.log(response))
+    );
+  }
+
 //------------------------ INV-PRODUCT ----------------------------------------------------------
 
   public createInvoiceProducts(id: number, iProduct: InvoiceProduct ): Observable<InvoiceProduct> {
