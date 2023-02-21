@@ -12,6 +12,8 @@ import { InvoiceUpdateComponent } from './invoice/invoice-update/invoice-update.
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductUpdateComponent } from './product/product-update/product-update.component';
+import { ProfitLossComponent } from './report/profit-loss/profit-loss.component';
+import { StockReportComponent } from './report/stock-report/stock-report.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { UserlistComponent } from './user/userlist/userlist.component';
@@ -31,7 +33,9 @@ const routes: Routes = [
   { path: 'product-detail', component: ProductCreateComponent},
   { path: 'pinvoice-list/:type', component: InvoiceListComponent},
   { path: 'pinvoice-detail/:type', component: InvoiceCreateComponent},
-  { path: 'pinvoice-details/:id', component: InvoiceUpdateComponent}
+  { path: 'pinvoice-details/:id', component: InvoiceUpdateComponent},
+  { path: 'stockReport', component: StockReportComponent},
+  { path: 'profitLoss', component: ProfitLossComponent},
  
 ];
 
