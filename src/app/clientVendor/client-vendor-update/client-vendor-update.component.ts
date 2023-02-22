@@ -13,6 +13,7 @@ import { ClientVendorService } from 'src/app/services/client-vendor.service';
 export class ClientVendorUpdateComponent implements OnInit{
   faList = faList;
   clientVendorForm!: FormGroup;
+  error!: string;
 
   constructor(private clientService: ClientVendorService,
               private formBuilder: FormBuilder,
@@ -48,8 +49,11 @@ export class ClientVendorUpdateComponent implements OnInit{
     const client: ClientVendor = this.clientVendorForm.value as ClientVendor;
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.clientService.updateClientVendor(client, id).subscribe(
-      data => this.clientService.updateClientVendors(data)
+      ((value: ClientVendor) => {
+        this.clientService.updateClientVendors(value);
+        this.router.navigate(['/client-list']);
+      }),
+      ((err: any) => this.error = err )
     );
-    this.router.navigate(['/client-list']);
   }
 }

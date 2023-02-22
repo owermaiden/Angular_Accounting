@@ -13,6 +13,7 @@ export class ClientVendorListComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPen = faPen;
   clientVendors: ClientVendor[] = []; 
+  error!: string;
 
   constructor(private clientVendService: ClientVendorService){}
 
@@ -24,8 +25,10 @@ export class ClientVendorListComponent implements OnInit {
   }
 
   deleteClient(clientVendor: ClientVendor): void{
-    this.clientVendors = this.clientVendors.filter(h => h !== clientVendor);
-    this.clientVendService.deleteClientVendor(clientVendor.id!).subscribe();
+    this.clientVendService.deleteClientVendor(clientVendor.id!).subscribe(
+      (res: any) => this.clientVendService.fetchClientVendors(),
+      (err: any) => this.error = err
+    );
   }
 
 }

@@ -72,9 +72,8 @@ export class CategoryService {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = error.error.message;
     }
-    console.log(errorMessage);
     return throwError(() => {
         return errorMessage;
     });

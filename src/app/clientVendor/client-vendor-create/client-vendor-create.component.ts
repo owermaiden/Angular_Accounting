@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class ClientVendorCreateComponent implements OnInit{
   faList = faList;
   clientVendorForm!: FormGroup;
+  error!: string
 
   constructor(private formBuilder: FormBuilder,
               private clientService: ClientVendorService,
@@ -36,12 +37,15 @@ export class ClientVendorCreateComponent implements OnInit{
     });
   }
 
-  onSubmit(){
+  onSubmit(): void {
     const client: ClientVendor = this.clientVendorForm.value as ClientVendor;
     console.log(client);
     this.clientService.createClientVendor(client).subscribe(
-      data => this.clientService.setClientVendors(data)
+      ((value: ClientVendor) => {
+        this.clientService.setClientVendors(value);
+        this.router.navigate(['/client-list']);
+      }),
+      ((err: any) => this.error = err )
     );
-    this.router.navigate(['/client-list']);
   }
 }

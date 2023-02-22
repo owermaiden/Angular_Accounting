@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { ClientVendor } from '../common/client-vendor';
 
 @Injectable({
@@ -42,26 +42,45 @@ export class ClientVendorService {
 
   public getClientVendorById(id: number | string): Observable<ClientVendor> {
     return this.http.get<GetResponse>(`${this.baseUrl}/${id}`).pipe(
-      map(response => response.data)
+      map(response => response.data),
+      catchError(error => this.handleError(error))
     );
   }
 
   public createClientVendor(ClientVendor: ClientVendor): Observable<ClientVendor> {
     return this.http.post<GetResponse>(this.baseUrl, ClientVendor).pipe(
-      map(response => response.data)
+      map(response => response.data),
+      catchError(error => this.handleError(error))
     );
   } 
 
   public updateClientVendor(clientVendor: ClientVendor, id: number): Observable<ClientVendor> {
     return this.http.put<GetResponse>(`${this.baseUrl}/${id}`, clientVendor).pipe(
-      map(response => response.data)
+      map(response => response.data),
+      catchError(error => this.handleError(error))
     );
   }
 
   public deleteClientVendor(id: number): any {
     return this.http.delete<any>(`${this.baseUrl}/${id}`).pipe(
-      map(response => console.log(response))
+      map(response => console.log(response)),
+      catchError(error => this.handleError(error))
     )
+  }
+
+  handleError(error:any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = error.error.message;
+    }
+    console.log(errorMessage);
+    return throwError(() => {
+        return errorMessage;
+    });
   }
 
 }

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { faCirclePlus, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/common/category';
@@ -13,6 +14,7 @@ export class CategoryListComponent implements OnInit{
   faTrashCan = faTrashCan;
   faPen = faPen;
   categories: Category[] = [];
+  error!: string;
 
   constructor(private categoryService: CategoryService){}
 
@@ -25,9 +27,8 @@ export class CategoryListComponent implements OnInit{
 
   deleteCat(category: Category): void{
     this.categoryService.deleteCategory(category.id!).subscribe(
-      () => {
-        this.categories = this.categories.filter(h => h !== category);
-      }
+      (res: any) => this.categoryService.fetchCtegories(),
+      (err: any) => this.error = err
     );
   }
 }
