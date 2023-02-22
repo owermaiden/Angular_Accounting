@@ -1,112 +1,126 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark text-dark" style="background-color: #adf0b6;">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#"><img src="assets/images/CydeoLogoMini.jpg" height="40" alt="Cydeo"/></a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+<nav class="navbar navbar-expand-lg " style="background-color: #c5fad3;">
+  <a class="navbar-brand ml-4"><img src="assets/images/CydeoLogoMini.jpg" height="45" alt="Cydeo"/></a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-2"></div>
+              <div class="marquee">
+                  <h1 class="col-xs-8 text-center"
+                      >{{ title | uppercase}}</h1>
+              </div>
+          </div>
+      </div>
+      <ul class="navbar-nav navbar-right-top mx-4">
+        <li class="dropdown d-flex align-items-center px-2">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/images/user_profile.svg" alt="" class="user-avatar-md rounded-circle"
+                style="width:40px;height:40px;"/>
+          </a>
+          <ul class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+            <div class="nav-user-info dropdown-item">
+              <h6 class="nav-user-name">Admin</h6>
+            </div>
+            <li><a class="dropdown-item" href="#">Account</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#"><fa-icon [icon]="faLogout"></fa-icon></a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown d-flex align-items-center">
+            <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page" 
+                class="nav-link"><fa-icon [icon]="faHome" size="2x"></fa-icon></a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
   </div>
 </nav>
-
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-0" style="background-color: #adf0b6;">
-            <div class="d-flex flex-column align-items-center align-items-sm-start m-0 p-0 text-dark min-vh-100">
-                <ul class="list-group list-group-flush w-100">
-                    <br>
-                    <br>
-                    <li class="list-group-item" style="background-color: #adf0b6;">
-                        <a class="btn btn-outline" data-bs-toggle="collapse" href="#management" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          <i class="fa fa-fw fa-list-ul"></i> Management
-                        </a>
-                        <div class="collapse" id="management">
-                            <ul class="list-group list-group-flush">
-                                <a routerLink="/userlist" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                   class="list-group-item list-group-item-action text-white"
-                                   style="background-color: #244328;"><small>User Registration</small></a>
-                                <a routerLink="/client-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                   class="list-group-item list-group-item-action text-white"
-                                   style="background-color: #244328;"><small>Client/Vendor Registration</small></a>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="list-group-item" style="background-color: #adf0b6;">
-                        <a class="btn btn-outline" data-bs-toggle="collapse" href="#stock" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          <i class="fa fa-fw fa-list-ul"></i> Stock Management
-                        </a>
-                        <div class="collapse" id="stock">
-                            <ul class="list-group list-group-flush">
-                                <a routerLink="/category-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                   class="list-group-item list-group-item-action text-white"
-                                   style="background-color: #244328;"><small>Category</small></a>
-                                <a routerLink="/product-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                   class="list-group-item list-group-item-action text-white"
-                                   style="background-color: #244328;"><small>Product</small></a>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="list-group-item" style="background-color: #adf0b6;">
-                        <a class="btn btn-outline" data-bs-toggle="collapse" href="#invoice" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          <i class="fa fa-fw fa-list-ul"></i> Invoices
-                        </a>
-                        <div class="collapse" id="invoice">
-                            <ul class="list-group list-group-flush">
-                                <a routerLink="/pinvoice-list/SALE" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                   class="list-group-item list-group-item-action text-white"
-                                   style="background-color: #244328;"><small>Sale Invoices</small></a>
-                                <a routerLink="/pinvoice-list/PURCHASE" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                   class="list-group-item list-group-item-action text-white"
-                                   style="background-color: #244328;"><small>Purchase Invoices</small></a>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="list-group-item" style="background-color: #adf0b6;">
-                      <a class="btn btn-outline" data-bs-toggle="collapse" href="#reporting" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa fa-fw fa-list-ul"></i> Reporting
+  <div class="row">
+      <div class="col-2" style="background-color: #c5fad3;">
+          <div class="d-flex flex-column align-items-center align-items-sm-start m-0 p-0 text-dark min-vh-100">
+              <ul class="list-group list-group-flush pl-2">
+                  <br>
+                  <br>
+                  <li class="list-group-item" style="background-color: #c5fad3;">
+                      <a class="btn btn-outline" data-bs-toggle="collapse" href="#management" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-fw fa-list-ul"></i> Management
                       </a>
-                      <div class="collapse" id="reporting">
+                      <div class="collapse" id="management">
                           <ul class="list-group list-group-flush">
-                              <a routerLink="/profitLoss" routerLinkActive="active" ariaCurrentWhenActive="page"
+                              <a routerLink="/userlist" routerLinkActive="active" ariaCurrentWhenActive="page"
                                  class="list-group-item list-group-item-action text-white"
-                                 style="background-color: #244328;"><small>Profit/Loss Report</small></a>
-                              <a routerLink="/stockReport" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                 style="background-color: #244328;"><small>User Registration</small></a>
+                              <a routerLink="/client-list" routerLinkActive="active" ariaCurrentWhenActive="page"
                                  class="list-group-item list-group-item-action text-white"
-                                 style="background-color: #244328;"><small>Stock Report</small></a>
+                                 style="background-color: #244328;"><small>Client/Vendor Registration</small></a>
                           </ul>
                       </div>
-                    </li>
-                    <!-- <li class="list-group-item" style="background-color: #adf0b6;">
-                      <a class="btn btn-outline" data-bs-toggle="collapse" href="#administration" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa fa-fw fa-list-ul"></i> Administration
+                  </li>
+                  <li class="list-group-item" style="background-color: #c5fad3;">
+                      <a class="btn btn-outline" data-bs-toggle="collapse" href="#stock" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-fw fa-list-ul"></i> Stock
                       </a>
-                      <div class="collapse" id="administration">
+                      <div class="collapse" id="stock">
                           <ul class="list-group list-group-flush">
-                              <a routerLink="/profit" routerLinkActive="active" ariaCurrentWhenActive="page"
+                              <a routerLink="/category-list" routerLinkActive="active" ariaCurrentWhenActive="page"
                                  class="list-group-item list-group-item-action text-white"
-                                 style="background-color: #244328;"><small>Membership Payment</small></a>
-                              <a routerLink="/stock" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                 style="background-color: #244328;"><small>Category</small></a>
+                              <a routerLink="/product-list" routerLinkActive="active" ariaCurrentWhenActive="page"
                                  class="list-group-item list-group-item-action text-white"
-                                 style="background-color: #244328;"><small>Log Document</small></a>
+                                 style="background-color: #244328;"><small>Product</small></a>
                           </ul>
                       </div>
-                    </li> -->
-                </ul>
-            </div>
-        </div>
-        
-        <div class="col py-3">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+                  </li>
+                  <li class="list-group-item" style="background-color: #c5fad3;">
+                      <a class="btn btn-outline" data-bs-toggle="collapse" href="#invoice" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-fw fa-list-ul"></i> Invoices
+                      </a>
+                      <div class="collapse" id="invoice">
+                          <ul class="list-group list-group-flush">
+                              <a routerLink="/pinvoice-list/SALE" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                 class="list-group-item list-group-item-action text-white"
+                                 style="background-color: #244328;"><small>Sale Invoices</small></a>
+                              <a routerLink="/pinvoice-list/PURCHASE" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                 class="list-group-item list-group-item-action text-white"
+                                 style="background-color: #244328;"><small>Purchase Invoices</small></a>
+                          </ul>
+                      </div>
+                  </li>
+                  <li class="list-group-item" style="background-color: #c5fad3;">
+                    <a class="btn btn-outline" data-bs-toggle="collapse" href="#reporting" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      <i class="fa fa-fw fa-list-ul"></i> Reporting
+                    </a>
+                    <div class="collapse" id="reporting">
+                        <ul class="list-group list-group-flush">
+                            <a routerLink="/profitLoss" routerLinkActive="active" ariaCurrentWhenActive="page"
+                               class="list-group-item list-group-item-action text-white"
+                               style="background-color: #244328;"><small>Profit/Loss Report</small></a>
+                            <a routerLink="/stockReport" routerLinkActive="active" ariaCurrentWhenActive="page"
+                               class="list-group-item list-group-item-action text-white"
+                               style="background-color: #244328;"><small>Stock Report</small></a>
+                        </ul>
+                    </div>
+                  </li>
+                  <!-- <li class="list-group-item" style="background-color: #adf0b6;">
+                    <a class="btn btn-outline" data-bs-toggle="collapse" href="#administration" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      <i class="fa fa-fw fa-list-ul"></i> Administration
+                    </a>
+                    <div class="collapse" id="administration">
+                        <ul class="list-group list-group-flush">
+                            <a routerLink="/profit" routerLinkActive="active" ariaCurrentWhenActive="page"
+                               class="list-group-item list-group-item-action text-white"
+                               style="background-color: #244328;"><small>Membership Payment</small></a>
+                            <a routerLink="/stock" routerLinkActive="active" ariaCurrentWhenActive="page"
+                               class="list-group-item list-group-item-action text-white"
+                               style="background-color: #244328;"><small>Log Document</small></a>
+                        </ul>
+                    </div>
+                  </li> -->
+              </ul>
+          </div>
+      </div>
+      
+      <div class="col-10 mt-2">
+          <router-outlet></router-outlet>
+          <footer class="page-footer font-small blue bottom">
+            <div class="footer-copyright text-center py-3">©2023 Cydeo – All Rights Reserved</div>
+        </footer>
+      </div>
+  </div>
