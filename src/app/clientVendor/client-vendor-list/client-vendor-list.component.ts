@@ -26,7 +26,10 @@ export class ClientVendorListComponent implements OnInit {
 
   deleteClient(clientVendor: ClientVendor): void{
     this.clientVendService.deleteClientVendor(clientVendor.id!).subscribe(
-      (res: any) => this.clientVendService.fetchClientVendors(),
+      (res: any) => {
+        this.error = '';
+        this.clientVendService.fetchClientVendors()
+      },
       (err: any) => this.error = err
     );
   }

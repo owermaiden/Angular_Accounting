@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPen = faPen;
   products: Product[] = [];
+  error!: string;
 
   constructor(private productService: ProductService){}
 
@@ -25,8 +26,12 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(product: Product): void{
     this.productService.deleteProduct(product.id!).subscribe(
-      () => {
-        this.products = this.products.filter(h => h !== product)}
+      (res: any) => {
+        this.error = '';
+        this.productService.fetchProducts();
+
+      },
+      (err: any) => this.error = err
     );
     
   }

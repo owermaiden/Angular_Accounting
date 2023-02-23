@@ -27,7 +27,10 @@ export class CategoryListComponent implements OnInit{
 
   deleteCat(category: Category): void{
     this.categoryService.deleteCategory(category.id!).subscribe(
-      (res: any) => this.categoryService.fetchCtegories(),
+      (res: any) => {
+        this.error = '';
+        this.categoryService.fetchCtegories()
+      },
       (err: any) => this.error = err
     );
   }

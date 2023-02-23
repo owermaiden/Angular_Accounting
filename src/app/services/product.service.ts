@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { Product } from '../common/product';
 
 @Injectable({
@@ -17,7 +17,8 @@ export class ProductService {
 
   public fetchProducts(): void {
     this.http.get<GetResponses>(this.baseUrl).pipe(
-      map(response  => response.data)
+      map(response  => response.data),
+      catchError(error => this.handleError(error))
     ).subscribe(
       data => {
         this.products = data;
@@ -42,26 +43,45 @@ export class ProductService {
 
   public getProductById(id: number | string): Observable<Product> {
     return this.http.get<GetResponse>(`${this.baseUrl}/${id}`).pipe(
-      map(response => response.data)
+      map(response => response.data),
+      catchError(error => this.handleError(error))
     );
   }
 
   public createProduct(product: Product): Observable<Product> {
     return this.http.post<GetResponse>(this.baseUrl, product).pipe(
-      map(response => response.data)
+      map(response => response.data),
+      catchError(error => this.handleError(error))
     );
   } 
 
   public updateProduct(product: Product, id: number): Observable<Product> {
     return this.http.put<GetResponse>(`${this.baseUrl}/${id}`, product).pipe(
-      map(response => response.data)
+      map(response => response.data),
+      catchError(error => this.handleError(error))
     );
   }
 
   public deleteProduct(id: number): any {
     return this.http.delete<any>(`${this.baseUrl}/${id}`).pipe(
-      map(response => console.log(response))
+      map(response => console.log(response)),
+      catchError(error => this.handleError(error))
     )
+  }
+
+  handleError(error:any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = error.error.message;
+    }
+    console.log(errorMessage);
+    return throwError(() => {
+        return errorMessage;
+    });
   }
 }
 
