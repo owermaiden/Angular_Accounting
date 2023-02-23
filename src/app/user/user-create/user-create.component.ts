@@ -19,6 +19,7 @@ export class UserCreateComponent implements OnInit {
   company: Company | undefined;
   roles: Role[] = [];
   userForm!: FormGroup; 
+  error!: string;
 
   constructor(private companyService: CompanyService,
               private roleService: RoleService,
@@ -51,9 +52,12 @@ export class UserCreateComponent implements OnInit {
   onSubmit():any{
     const user: User = this.userForm.value as User;
     this.userService.createUser(user).subscribe(
-      data => this.userService.setUsers(data)
+      ((value: User) => {
+        this.userService.setUsers(value);
+        this.router.navigate(['/userlist']);
+      }),
+      ((err: any) => this.error = err )
     );
-    this.router.navigate(['/userlist']);
   }
 
   

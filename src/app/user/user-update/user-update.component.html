@@ -140,6 +140,9 @@
                         </div>
                     </div>
                 </div>
+                <div *ngIf="error" class="alert alert-danger mt-2 text-center" role="alert">
+                    {{ error }}
+                </div>
             </div>
         </div>
     </div>

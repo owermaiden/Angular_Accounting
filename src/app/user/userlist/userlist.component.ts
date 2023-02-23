@@ -13,6 +13,7 @@ export class UserlistComponent implements OnInit {
   faTrashCan = faTrashCan;
   faPen = faPen;
   users: User[] = [];
+  error!: string;
   
   constructor(private userservice: UserServiceService) {  }
 
@@ -24,10 +25,13 @@ export class UserlistComponent implements OnInit {
       
   }
 
-
   deleteUser(user: User): void{
-    this.users = this.users.filter(h => h !== user);
-    this.userservice.deleteUser(user.id!).subscribe();
+    this.userservice.deleteUser(user.id!).subscribe(
+      (res: any) => this.userservice.fetchUsers(),
+      (err: any) => this.error = err
+    );
   }
+
+
 
 }

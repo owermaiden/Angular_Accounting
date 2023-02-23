@@ -17,7 +17,8 @@ export class CategoryService {
 
   public fetchCtegories(): void {
     this.http.get<GetResponseCats>(this.baseUrl).pipe(
-      map(response  => response.data)
+      map(response  => response.data),
+      catchError(error => this.handleError(error))
     ).subscribe(
       data => {
         this.categories = data;

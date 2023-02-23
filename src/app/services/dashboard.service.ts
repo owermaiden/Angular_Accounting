@@ -14,15 +14,13 @@ export class DashboardService {
 
   public fetchSummaryNumbers(): Observable<Map<string, number>> {
     return this.http.get<GetResponseMap>(`${this.baseUrl}/summary`).pipe(
-      map(response => response.data),
-      tap(response => console.log(response))
+      map(response => response.data)
     );
   }
 
   public fetchEchangeData(): Observable<Currency> {
     return this.http.get<GetResponse>(`${this.baseUrl}/exchange`).pipe(
-      map(response => response.data),
-      tap(response => console.log(response))
+      map(response => response.data)
     );
   }
 

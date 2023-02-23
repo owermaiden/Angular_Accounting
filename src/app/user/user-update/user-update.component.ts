@@ -19,6 +19,7 @@ export class UserUpdateComponent implements OnInit {
   company!: Company;
   roles: Role[] = [];
   userForm!: FormGroup; 
+  error!: string;
 
   constructor(private companyService: CompanyService,
     private roleService: RoleService,
@@ -72,9 +73,12 @@ export class UserUpdateComponent implements OnInit {
     const user: User = this.userForm.value as User;
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.userService.updateUser(user, id).subscribe(
-      data => this.userService.updateUsers(data)
+      ((value: User) => {
+        this.userService.updateUsers(value);
+        this.router.navigate(['/userlist']);
+      }),
+      ((err: any) => this.error = err )
     );
-    this.router.navigate(['/userlist']);
   }
 
 

@@ -9,5 +9,6 @@ export class User {
                 public lastname?: string,
                 public phone?: string,
                 public role?: Role,
-                public company?: Company ){}
+                public company?: Company,
+                public isOnlyAdmin?: boolean ){}
 }
