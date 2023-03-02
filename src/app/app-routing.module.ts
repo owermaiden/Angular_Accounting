@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'pinvoice-details/:id', component: InvoiceUpdateComponent},
   { path: 'stockReport', component: StockReportComponent},
   { path: 'profitLoss', component: ProfitLossComponent},
+  { path: '**', component: DashboardComponent }
  
 ];
 
