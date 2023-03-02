@@ -9,7 +9,7 @@ import { faHome, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 export class AppComponent {
   faHome = faHome;
   faLogout = faPowerOff;
-  title = 'accounting';
+  title = 'Green Tech';
 
 
 }
