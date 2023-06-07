@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -25,6 +25,24 @@ import { InvoiceProductCreateComponent } from './invoiceProduct/invoice-product-
 import { StockReportComponent } from './report/stock-report/stock-report.component';
 import { ProfitLossComponent } from './report/profit-loss/profit-loss.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080',
+        realm: 'Ower',
+        clientId: 'accounting'
+      },
+      initOptions: {
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+          window.location.origin + '/assets/silent-check-sso.html'
+      }
+    });
+}
 
 @NgModule({
   declarations: [
@@ -54,9 +72,17 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    KeycloakAngularModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
