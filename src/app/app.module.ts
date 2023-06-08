@@ -33,7 +33,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     keycloak.init({
       config: {
         url: 'http://localhost:8080',
-        realm: 'Ower',
+        realm: 'ower',
         clientId: 'accounting'
       },
       initOptions: {
