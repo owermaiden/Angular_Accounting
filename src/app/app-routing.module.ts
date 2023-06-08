@@ -21,7 +21,7 @@ import { UserlistComponent } from './user/userlist/userlist.component';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'userlist', component: UserlistComponent },
   { path: 'user-update/:id', component: UserUpdateComponent },
   { path: 'user-detail', component: UserCreateComponent },
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'pinvoice-details/:id', component: InvoiceUpdateComponent},
   { path: 'stockReport', component: StockReportComponent},
   { path: 'profitLoss', component: ProfitLossComponent},
-  { path: '**', component: DashboardComponent }
+  { path: '**', redirectTo: '/' }
  
 ];
 

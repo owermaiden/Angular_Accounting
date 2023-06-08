@@ -27,23 +27,7 @@ import { ProfitLossComponent } from './report/profit-loss/profit-loss.component'
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080',
-        realm: 'Ower',
-        clientId: 'accounting'
-      },
-      initOptions: {
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html',
-        
-      }
-    });
-}
+import { initializeKeycloak } from './init/keycloak-init.factory';
 
 @NgModule({
   declarations: [
