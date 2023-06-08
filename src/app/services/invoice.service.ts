@@ -15,7 +15,7 @@ export class InvoiceService {
   private purchaseInvoices: Invoice[] = [];
   private purchaseInvoices$ = new BehaviorSubject<Invoice[]>(this.purchaseInvoices);
 
-  baseUrl: string = 'http://localhost:8080/api/v1/invoices';
+  baseUrl: string = 'http://localhost:8002/api/v1/invoices';
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Company } from '../common/company';
 })
 export class CompanyService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/companies/2';
+  private baseUrl = 'http://localhost:8002/api/v1/companies/2';
 
   constructor(private http: HttpClient) { }
 

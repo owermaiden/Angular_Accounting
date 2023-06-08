@@ -11,7 +11,7 @@ export class ClientVendorService {
   private clientVendors: ClientVendor[] = [];
   private clientVendors$ = new BehaviorSubject<ClientVendor[]>(this.clientVendors);
 
-  baseUrl: string = 'http://localhost:8080/api/v1/clientVendors';
+  baseUrl: string = 'http://localhost:8002/api/v1/clientVendors';
 
   constructor(private http: HttpClient) { }
 

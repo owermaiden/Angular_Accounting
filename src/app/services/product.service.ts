@@ -11,7 +11,7 @@ export class ProductService {
   private products: Product[] = [];
   private products$ = new BehaviorSubject<Product[]>(this.products);
 
-  baseUrl: string = 'http://localhost:8080/api/v1/products';
+  baseUrl: string = 'http://localhost:8002/api/v1/products';
 
   constructor(private http: HttpClient) { }
 

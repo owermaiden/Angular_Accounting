@@ -12,7 +12,7 @@ export class UserServiceService {
   private users: User[] = [];
   private user$ = new BehaviorSubject<User[]>(this.users);
 
-  private baseUrl = 'http://localhost:8080/api/v1/users';
+  private baseUrl = 'http://localhost:8002/api/v1/users';
 
   constructor(private http: HttpClient) { }
 

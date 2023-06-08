@@ -8,7 +8,7 @@ import { InvoiceProduct } from '../common/invoice-product';
 })
 export class ReportService {
 
-  baseUrl: string = 'http://localhost:8080/api/v1/reports';
+  baseUrl: string = 'http://localhost:8002/api/v1/reports';
 
   constructor(private http: HttpClient) { }
 

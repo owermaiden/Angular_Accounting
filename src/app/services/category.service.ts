@@ -11,7 +11,7 @@ export class CategoryService {
   private categories: Category[] = [];
   private categories$ = new BehaviorSubject<Category[]>(this.categories);
 
-  baseUrl: string = 'http://localhost:8080/api/v1/categories';
+  baseUrl: string = 'http://localhost:8002/api/v1/categories';
 
   constructor(private http: HttpClient) { }
 
