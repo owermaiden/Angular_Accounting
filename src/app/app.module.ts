@@ -33,13 +33,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
     keycloak.init({
       config: {
         url: 'http://localhost:8080',
-        realm: 'ower',
+        realm: 'Ower',
         clientId: 'accounting'
       },
       initOptions: {
         onLoad: 'check-sso',
         silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
+          window.location.origin + '/assets/silent-check-sso.html',
+        
       }
     });
 }

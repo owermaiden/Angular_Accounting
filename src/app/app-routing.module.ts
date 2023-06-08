@@ -18,9 +18,10 @@ import { StockReportComponent } from './report/stock-report/stock-report.compone
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { UserlistComponent } from './user/userlist/userlist.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'userlist', component: UserlistComponent },
   { path: 'user-update/:id', component: UserUpdateComponent },
   { path: 'user-detail', component: UserCreateComponent },
