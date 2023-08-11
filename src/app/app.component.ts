@@ -31,6 +31,6 @@ export class AppComponent {
   }
 
   public logout() {
-    this.keycloak.logout('http://localhost:4200/');
+    this.keycloak.logout();
   }
 }
