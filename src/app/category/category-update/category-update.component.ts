@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/common/category';
-import { CategoryService } from 'src/app/services/category.service';
+import { CatsService } from 'src/app/services/cats.service';
 
 @Component({
   selector: 'app-category-update',
@@ -14,7 +14,8 @@ export class CategoryUpdateComponent implements OnInit{
   faList = faList;
   categoryForm!: FormGroup;
 
-  constructor(private catService: CategoryService,
+  constructor(
+              private service:CatsService,
               private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute){}
@@ -23,24 +24,22 @@ export class CategoryUpdateComponent implements OnInit{
     this.categoryForm = this.formBuilder.group({
       description: new FormControl('',[Validators.required, Validators.minLength(2)])
     });
-    const id: number = +this.route.snapshot.paramMap.get('id')!;
-    this.route.paramMap.subscribe(() => { this.getCategoryById(id); });
+    this.getCategory();
   }
 
-  getCategoryById(id: number) {
-    this.catService.getCategoryById(id).subscribe(
-      (response: Category) => this.categoryForm.patchValue({
+
+  getCategory(): void {
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
+    this.service.getCategory(id)
+      .subscribe( (response: Category) => this.categoryForm.patchValue({
         description: response.description
-      })
-    )
+      }));
   }
 
-  onSubmit():any{
+  onSubmit(){
     const category: Category = this.categoryForm.value as Category;
     const id = +this.route.snapshot.paramMap.get('id')!;
-    this.catService.updateCategory(category, id).subscribe(
-      data => this.catService.updateCategories(data)
-    );
-    this.router.navigate(['/category-list']);
+    this.service.updateCat(category, id)
+        .subscribe(() => this.router.navigate(['/category-list']));
   }
 }

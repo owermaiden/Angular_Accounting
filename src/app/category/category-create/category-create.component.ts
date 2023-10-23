@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/common/category';
-import { CategoryService } from 'src/app/services/category.service';
+import { CatsService } from 'src/app/services/cats.service';
 
 @Component({
   selector: 'app-category-create',
@@ -14,7 +14,8 @@ export class CategoryCreateComponent implements OnInit {
   faList = faList;
   categoryForm!: FormGroup;
 
-  constructor(private catService: CategoryService,
+  constructor(
+              private service: CatsService,
               private formBuilder: FormBuilder,
               private router: Router){}
 
@@ -25,13 +26,12 @@ export class CategoryCreateComponent implements OnInit {
   }
 
 
-  onSubmit():any{
+  onSubmit(){
     const category: Category = this.categoryForm.value as Category;
-    console.log(category);
-    this.catService.createCategory(category).subscribe(
-      data => this.catService.setCategories(data)
-    );
-    this.router.navigate(['/category-list']);
+    this.service.addCat(category)
+      .subscribe(hero => {
+        this.router.navigate(['/category-list']);
+      });
   }
 
 }

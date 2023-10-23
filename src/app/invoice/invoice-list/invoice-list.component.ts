@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { faCirclePlus, faTrashCan, faPen, faCheck, faCircleCheck, faPrint } from '@fortawesome/free-solid-svg-icons';
 import { filter, Subscription } from 'rxjs';
 import { Invoice } from 'src/app/common/invoice';
-import { CategoryService } from 'src/app/services/category.service';
+import { CatsService } from 'src/app/services/cats.service';
 import { ClientVendorService } from 'src/app/services/client-vendor.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -26,7 +26,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy{
   private _routerSub = Subscription.EMPTY;
 
   constructor(private invoiceService: InvoiceService,
-              private categoryService: CategoryService,
+              private categoryService: CatsService,
               private clientService: ClientVendorService,
               private productService: ProductService,
               private route: ActivatedRoute,
@@ -46,7 +46,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy{
 
   initPage(){
     this.type = this.route.snapshot.paramMap.get('type')!;
-    this.categoryService.fetchCtegories();
+    // this.categoryService.fetchCtegories();
     this.clientService.fetchClientVendors();
     this.productService.fetchProducts();
     this.invoiceService.fetchInvoices(this.type);

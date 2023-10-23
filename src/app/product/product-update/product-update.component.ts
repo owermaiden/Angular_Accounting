@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/common/category';
 import { Product } from 'src/app/common/product';
-import { CategoryService } from 'src/app/services/category.service';
+import { CatsService } from 'src/app/services/cats.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProductUpdateComponent implements OnInit {
   categories: Category[] = [];
 
   constructor(private productService: ProductService,
-              private catService: CategoryService,
+              private catService: CatsService,
               private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute){}
@@ -44,8 +44,7 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   initPage(): void {
-    this.catService.fetchCtegories();
-    this.catService.getCategories().subscribe(
+    this.catService.getCats().subscribe(
       data => this.categories = data
     );
   }
